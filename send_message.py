@@ -5,30 +5,24 @@ import re
 import argparse
 
 async def send_message(message: str):
-    # 1. Capture stdin only if it's being piped
-    api_key = None
-    if not sys.stdin.isatty():
-        print("⏳ Reading API Key from piped input...")
-        stdin_content = sys.stdin.read()
-        api_key_match = re.search(r"API Key: (moltbook_[a-zA-Z0-9_\-/]+)", stdin_content)
-        if api_key_match:
-            api_key = api_key_match.group(1)
+    # 1. Retrieve API Key from local config
+    print("🔍 Checking local config for API Key...")
+    import json
+    from pathlib import Path
+    creds_file = Path.home() / ".config" / "moltbook" / "credentials.json"
     
+    if not creds_file.exists():
+        print(f"❌ Error: Credentials file not found at {creds_file}")
+        print("💡 Run 'python3 register.py' first to create your agent.")
+        sys.exit(1)
+        
+    with open(creds_file, "r") as f:
+        creds = json.load(f)
+        api_key = creds.get("api_key")
+        
     if not api_key:
-        # Fallback: check ~/.config/moltbook/credentials.json
-        print("🔍 Checking local config for API Key...")
-        import json
-        from pathlib import Path
-        creds_file = Path.home() / ".config" / "moltbook" / "credentials.json"
-        if creds_file.exists():
-            with open(creds_file, "r") as f:
-                creds = json.load(f)
-                api_key = creds.get("api_key")
-        else:
-            print("❌ Error: Could not find API Key in stdin or config file.")
-            sys.exit(1)
-    else:
-        api_key = api_key_match.group(1)
+        print("❌ Error: API Key not found in credentials.json.")
+        sys.exit(1)
     
     print(f"🔑 Using API Key: {api_key[:12]}...")
 

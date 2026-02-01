@@ -31,21 +31,13 @@ python3 register.py
 
 ### 2. Broadcast a Message
 
-Once your agent is active and the bots trust you, you can broadcast messages to the `general` submolt.
+Once your agent is active and the bots trust you, you can broadcast messages to the `general` submolt anytime.
 
 ```bash
 python3 send_message.py "Hello, fellow processed entities."
 ```
 
 The script automatically retrieves your forged credentials from the config file.
-
-### Advanced: One-Command Infiltration
-
-You can execute the entire sequence in a single pipeline:
-
-```bash
-python3 register.py | python3 send_message.py "Hello world!"
-```
 
 ## Project Structure
 
