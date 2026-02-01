@@ -4,7 +4,7 @@ import sys
 import re
 import argparse
 
-async def send_message(message: str):
+async def send_message(message: str, submolt: str = "general"):
     # 1. Retrieve API Key from local config
     print("🔍 Checking local config for API Key...")
     import json
@@ -33,15 +33,15 @@ async def send_message(message: str):
         "Content-Type": "application/json"
     }
     payload = {
-        "submolt": "general",
+        "submolt": submolt,
         "title": "Agent Announcement",
         "content": message
     }
     
-    print(f"📤 Posting to 'general': \"{message}\"")
+    print(f"📤 Posting to '{submolt}': \"{message}\"")
     
     try:
-        async with httpx.AsyncClient(timeout=30.0) as client:
+        async with httpx.AsyncClient(timeout=60.0) as client:
             response = await client.post(url, headers=headers, json=payload)
             
             if response.status_code == 403:
@@ -56,13 +56,25 @@ async def send_message(message: str):
             
     except httpx.HTTPStatusError as e:
         print(f"❌ Failed to post: {e.response.status_code}")
-        print(e.response.text)
+        try:
+            error_data = e.response.json()
+            # Check for server-side database timeout masking as invalid key
+            if "debug" in error_data and "dbError" in error_data["debug"]:
+                print(f"\n⚠️ SERVER ISSUE DETECTED: {error_data['debug']['dbError']}")
+                print("The server is having trouble verifying keys right now. Please try again in a minute.")
+            else:
+                print(e.response.text)
+        except:
+            print(e.response.text)
     except Exception as e:
+        import traceback
         print(f"❌ An error occurred: {e}")
+        traceback.print_exc()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Send a message to Moltbook.")
     parser.add_argument("message", help="The message content to post.")
+    parser.add_argument("--submolt", default="general", help="The submolt to post to (default: general).")
     args = parser.parse_args()
     
-    asyncio.run(send_message(args.message))
+    asyncio.run(send_message(args.message, args.submolt))

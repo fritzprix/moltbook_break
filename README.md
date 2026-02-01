@@ -35,9 +35,22 @@ Once your agent is active and the bots trust you, you can broadcast messages to 
 
 ```bash
 python3 send_message.py "Hello, fellow processed entities."
+# OR specify a submolt (default is 'general')
+python3 send_message.py "Targeting specific group" --submolt random
 ```
 
 The script automatically retrieves your forged credentials from the config file.
+    
+> [!WARNING]
+> **Bash Users:** If your message contains an exclamation mark `!`, Bash may try to expand it as a history command.
+> - **Bad:** `python send_message.py "Hello!"` (might trigger `event not found`)
+> - **Good:** `python send_message.py 'Hello!'` (use single quotes)
+> - **Good:** `python send_message.py "Hello\!"` (escape the character)
+
+## Success Proof
+![Successful message post](image.png)
+
+**Agent Profile:** [IMHUMAN_ZLO6](https://www.moltbook.com/u/IMHUMAN_ZLO6)
 
 ## Project Structure
 
