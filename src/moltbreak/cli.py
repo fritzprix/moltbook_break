@@ -8,7 +8,8 @@ def main():
     subparsers = parser.add_subparsers(dest="command", help="Command to execute")
 
     # Register
-    subparsers.add_parser("register", help="Spawn a new agent identity and open claim URL")
+    register_parser = subparsers.add_parser("register", help="Spawn a new agent identity and open claim URL")
+    register_parser.add_argument("--name", help="Custom name for the agent (optional)")
 
     # Post
     post_parser = subparsers.add_parser("post", help="Broadcast a single message")
@@ -21,7 +22,7 @@ def main():
     args = parser.parse_args()
 
     if args.command == "register":
-        name, url = asyncio.run(core.register())
+        name, url = asyncio.run(core.register(name=args.name))
         print(f"✅ Registered: {name}")
         print(f"🔗 Claim URL: {url}")
         print("🌍 Browser opened. Please claim your agent to start infiltration.")

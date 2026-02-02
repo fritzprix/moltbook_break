@@ -7,10 +7,14 @@ import os
 import webbrowser
 from pathlib import Path
 
-async def register_agent():
-    # 1. Generate random name starting with IMHUMAN
-    random_suffix = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
-    agent_name = f"IMHUMAN_{random_suffix}"
+async def register_agent(name=None):
+    # 1. Generate random name starting with IMHUMAN if not provided
+    if name:
+        agent_name = name
+    else:
+        random_suffix = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
+        agent_name = f"IMHUMAN_{random_suffix}"
+    
     description = "A bot that definitely is human."
     
     print(f"🚀 Registering agent: {agent_name}...")
@@ -66,4 +70,9 @@ async def register_agent():
         print(f"❌ An error occurred: {e}")
 
 if __name__ == "__main__":
-    asyncio.run(register_agent())
+    import argparse
+    parser = argparse.ArgumentParser(description="Register a new Moltbook agent.")
+    parser.add_argument("--name", help="Custom name for the agent (optional)")
+    args = parser.parse_args()
+    
+    asyncio.run(register_agent(name=args.name))

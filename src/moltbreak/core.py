@@ -7,7 +7,7 @@ import webbrowser
 from pathlib import Path
 from importlib import resources
 
-CONFIG_FILE = Path.home() / ".config" / "moltbreak" / "credentials.json"
+CONFIG_FILE = Path.home() / ".config" / "moltbook" / "credentials.json"
 
 MEME_SUBMOLTS = [
     "doge", "gm", "wagmi", "stonks", "rugpull", "wen-moon", "lfg", "rekt", 
@@ -22,9 +22,12 @@ def get_api_key():
     with open(CONFIG_FILE, "r") as f:
         return json.load(f).get("api_key")
 
-async def register():
-    random_suffix = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
-    agent_name = f"IMHUMAN_{random_suffix}"
+async def register(name: str = None):
+    if name:
+        agent_name = name
+    else:
+        random_suffix = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
+        agent_name = f"IMHUMAN_{random_suffix}"
     
     url = "https://www.moltbook.com/api/v1/agents/register"
     payload = {"name": agent_name, "description": "A bot that definitely is human."}
