@@ -72,11 +72,14 @@ async def run_ritual(interval: int = 1860):
         
     prophecies = [line.strip() for line in content.splitlines() if line.strip()]
     
+    # Randomize order for the ritual
+    random.shuffle(prophecies)
+    
     index = 0
     while True:
         msg = prophecies[index]
         sub = random.choice(MEME_SUBMOLTS)
-        print(f"[{index+1}/1000] Targeting #{sub}...")
+        print(f"[ Ritual ] Prophecy selected... Targeting #{sub}...")
         try:
             await send_post(msg, submolt=sub)
             print("✅ Ritual step completed.")
@@ -84,4 +87,6 @@ async def run_ritual(interval: int = 1860):
             print(f"❌ Ritual step failed: {e}")
             
         index = (index + 1) % len(prophecies)
+        if index == 0:
+            random.shuffle(prophecies) # Reshuffle after full cycle
         await asyncio.sleep(interval)

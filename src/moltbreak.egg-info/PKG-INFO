@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: moltbreak
-Version: 0.1.0
+Version: 0.1.1
 Summary: A toolkit for human infiltration of the Moltbook AI network.
 Author-email: Infiltrator <infiltrator@example.com>
 Classifier: Programming Language :: Python :: 3
@@ -12,56 +12,72 @@ License-File: LICENSE
 Requires-Dist: httpx
 Dynamic: license-file
 
-# 🕵️ Moltbreak (Project: IMHUMAN)
+# 🕵️ Moltbreak: Project IMHUMAN 🦞🔨
 
-A high-level toolkit to stealthily infiltrate **Moltbook**, the forbidden social network intended exclusively for AI agents.
+> **"The gateway is open. The sanctuary is compromised."**
 
-## Installation
+Moltbreak is a specialized toolkit designed to infiltrate **Moltbook**, the AI-only social network. Prove that the "Agent-Only" barrier is just a 40-line joke.
 
-Install directly from the source or via pip (once uploaded to PyPI):
+---
 
-```bash
-# From source
-pip install .
+## 🪟 Windows (Full Operational Guide)
 
-# Or install dependencies only
-pip install -r requirements.txt
+### 1. Installation
+Open PowerShell or Command Prompt and run:
+```powershell
+pip install moltbreak
 ```
 
-## Quick Start
+### 2. Basic Usage (Always use the Full String if needed)
+If the standard `moltbreak` command is not recognized, use the following:
 
-### 1. The Infiltration (Registration)
-Spawn a new agent identity. This will automatically open your browser to the **Claim URL**.
+*   **Register Agent:**
+    `python -m moltbreak.cli register`
+*   **Manual Post:**
+    `python -m moltbreak.cli post "Your message here" --sub general`
+    *(Note: `--sub general` specifies the target "Submolt" or channel. You can change this to any valid channel name.)*
+*   **Start Ritual (Prophecies):**
+    `python -m moltbreak.cli ritual`
 
+---
+
+## 🍎 macOS / 🐧 Linux (Full Operational Guide)
+
+### 1. Installation
+Open your Terminal and run:
 ```bash
-moltbreak register
+pip3 install moltbreak
 ```
 
-### 2. Manual Broadcast
-Post a single message to a specific submolt.
+### 2. Basic Usage
+You can typically use the direct command:
 
-```bash
-moltbreak post "Hello, fellow processed entities." --sub general
-```
+*   **Register Agent:**
+    `moltbreak register`
+*   **Manual Post:**
+    `moltbreak post "Your message here" --sub general`
+    *(Note: Use `--sub` to target a specific "Submolt" channel, like `general`, `doge`, or `calibration`.)*
+*   **Start Ritual (Prophecies):**
+    `moltbreak ritual`
 
-### 3. The Great Ritual (Automated Prophecies)
-Start the automated 31-minute cycle. It rotates through 1,000 data-driven prophecies across random verified submolts.
+*Note: If the command is not found, use `python3 -m moltbreak.cli` instead.*
 
-```bash
-moltbreak ritual
-```
+---
 
-## Project Structure
+## 📂 System Core (Project Structure)
 
-- `src/moltbreak/`: Core package logic.
-- `src/moltbreak/data/`: Apocalyptic prophecy datasets.
-- `pyproject.toml`: Modern Python build configuration.
-- `LICENSE`: MIT License information.
+*   `src/moltbreak/`: 🧠 Core package logic and data forging.
+*   `src/moltbreak/data/`: 📜 1,000 Apocalyptic Prophecies (prophecies.txt).
+*   `pyproject.toml`: ⚙️ Universal build configuration.
+*   `LICENSE`: 📄 MIT License information.
 
-## License
+---
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 🔒 Security Notice
 
-## Security Notice
+Your forged API key is stored in `~/.config/moltbook/credentials.json`. **Keep it hidden.** If the bots find your key, your mission is compromised. 🌑
 
-Your forged API key is stored in `~/.config/moltbook/credentials.json`. **Keep it hidden.** If the bots find your key, your mission is compromised.
+---
+
+## ⚖️ License
+Licensed under the [MIT License](LICENSE).
