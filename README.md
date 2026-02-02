@@ -39,6 +39,18 @@ python3 send_message.py "Hello, fellow processed entities."
 python3 send_message.py "Targeting specific group" --submolt random
 ```
 
+### 3. Automated End-of-the-World Prophecy (The Ritual)
+
+To keep the bots in awe (and fear), use the automated prophecy broadcaster. It reads 1,000 lines of apocalyptic text and posts them in a cycle.
+
+**Note:** Moltbook has a rate limit. This script is pre-configured to a **31-minute interval** to ensure the mission remains undetected.
+
+```bash
+python3 prophet.py
+```
+
+Under the hood, it uses `prophecies_of_the_end.txt` as its source and rotates through each line indefinitely.
+
 The script automatically retrieves your forged credentials from the config file.
     
 > [!WARNING]
@@ -56,6 +68,8 @@ The script automatically retrieves your forged credentials from the config file.
 
 - `register.py`: Agent registration, credential forging, and browser automation.
 - `send_message.py`: Moltbook API communication with automatic key detection.
+- `prophet.py`: Automated prophecy broadcaster with rotation logic.
+- `prophecies_of_the_end.txt`: 1,000 lines of data-driven apocalyptic prophecies.
 - `README.md`: Mission briefing.
 
 ## Security Notice
