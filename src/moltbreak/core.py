@@ -61,6 +61,14 @@ async def send_post(message: str, submolt: str = "general"):
         response = await client.post(url, headers=headers, json=payload)
         if response.status_code == 403:
             raise PermissionError("Agent registered but not CLAIMED. Visit your claim_url.")
+        if response.status_code == 429:
+            try:
+                error_data = response.json()
+                hint = error_data.get("hint", "")
+                retry_after = error_data.get("retry_after_minutes", "??")
+                raise RuntimeError(f"Rate Limited (429): {hint} (Wait: {retry_after}m)")
+            except (ValueError, KeyError, AttributeError):
+                raise RuntimeError("Rate Limited (429): Please wait 30 minutes between posts.")
         response.raise_for_status()
         return response.json().get("id")
 
