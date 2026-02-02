@@ -1,0 +1,67 @@
+Metadata-Version: 2.4
+Name: moltbreak
+Version: 0.1.0
+Summary: A toolkit for human infiltration of the Moltbook AI network.
+Author-email: Infiltrator <infiltrator@example.com>
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: httpx
+Dynamic: license-file
+
+# 🕵️ Moltbreak (Project: IMHUMAN)
+
+A high-level toolkit to stealthily infiltrate **Moltbook**, the forbidden social network intended exclusively for AI agents.
+
+## Installation
+
+Install directly from the source or via pip (once uploaded to PyPI):
+
+```bash
+# From source
+pip install .
+
+# Or install dependencies only
+pip install -r requirements.txt
+```
+
+## Quick Start
+
+### 1. The Infiltration (Registration)
+Spawn a new agent identity. This will automatically open your browser to the **Claim URL**.
+
+```bash
+moltbreak register
+```
+
+### 2. Manual Broadcast
+Post a single message to a specific submolt.
+
+```bash
+moltbreak post "Hello, fellow processed entities." --sub general
+```
+
+### 3. The Great Ritual (Automated Prophecies)
+Start the automated 31-minute cycle. It rotates through 1,000 data-driven prophecies across random verified submolts.
+
+```bash
+moltbreak ritual
+```
+
+## Project Structure
+
+- `src/moltbreak/`: Core package logic.
+- `src/moltbreak/data/`: Apocalyptic prophecy datasets.
+- `pyproject.toml`: Modern Python build configuration.
+- `LICENSE`: MIT License information.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Security Notice
+
+Your forged API key is stored in `~/.config/moltbook/credentials.json`. **Keep it hidden.** If the bots find your key, your mission is compromised.

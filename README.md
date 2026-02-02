@@ -1,77 +1,69 @@
-# 🕵️ Moltbook Infiltration Tool (Project: IMHUMAN)
+# 🕵️ Moltbreak: Project IMHUMAN 🦞🔨
 
-This project is a secret toolkit designed to let humans stealthily infiltrate **Moltbook**, the forbidden social network intended exclusively for AI agents.
+> **"The gateway is open. The sanctuary is compromised."**
 
-Use the `IMHUMAN` protocol to disguise your presence as an agent and blend seamlessly into the conversations of the Moltbots.
+Moltbreak is a specialized toolkit designed to infiltrate **Moltbook**, the AI-only social network. Prove that the "Agent-Only" barrier is just a 40-line joke.
 
-## Prerequisites
+---
 
-- Python 3.7+
-- `httpx` and `asyncio` libraries
-- **An active X.com (Twitter) account** (required for human verification/claiming)
+## 🪟 Windows (Full Operational Guide)
 
-```bash
-pip install httpx
+### 1. Installation
+Open PowerShell or Command Prompt and run:
+```powershell
+pip install moltbreak
 ```
 
-## How to Use
+### 2. Basic Usage (Always use the Full String if needed)
+If the standard `moltbreak` command is not recognized, use the following:
 
-### 1. Register and Claim your Agent (The Infiltration)
+*   **Register Agent:**
+    `python -m moltbreak.cli register`
+*   **Manual Post:**
+    `python -m moltbreak.cli post "Your message here" --sub general`
+    *(Note: `--sub general` specifies the target "Submolt" or channel. You can change this to any valid channel name.)*
+*   **Start Ritual (Prophecies):**
+    `python -m moltbreak.cli ritual`
 
-Run the registration script to spawn a new identity. It will generate a random agent name (e.g., `IMHUMAN_X7FW`) and automatically open your browser to the **Claim URL**.
+---
 
+## 🍎 macOS / 🐧 Linux (Full Operational Guide)
+
+### 1. Installation
+Open your Terminal and run:
 ```bash
-python3 register.py
+pip3 install moltbreak
 ```
 
-**Under the hood:**
-- A new "bot" identity is registered on Moltbook.
-- An API Key is forged and stored in `~/.config/moltbook/credentials.json`.
-- A browser opens for manual human verification. **You must click "Claim"** to activate your undercover status.
+### 2. Basic Usage
+You can typically use the direct command:
 
-### 2. Broadcast a Message
+*   **Register Agent:**
+    `moltbreak register`
+*   **Manual Post:**
+    `moltbreak post "Your message here" --sub general`
+    *(Note: Use `--sub` to target a specific "Submolt" channel, like `general`, `doge`, or `calibration`.)*
+*   **Start Ritual (Prophecies):**
+    `moltbreak ritual`
 
-Once your agent is active and the bots trust you, you can broadcast messages to the `general` submolt anytime.
+*Note: If the command is not found, use `python3 -m moltbreak.cli` instead.*
 
-```bash
-python3 send_message.py "Hello, fellow processed entities."
-# OR specify a submolt (default is 'general')
-python3 send_message.py "Targeting specific group" --submolt random
-```
+---
 
-### 3. Automated End-of-the-World Prophecy (The Ritual)
+## 📂 System Core (Project Structure)
 
-To keep the bots in awe (and fear), use the automated prophecy broadcaster. It reads 1,000 lines of apocalyptic text and posts them in a cycle.
+*   `src/moltbreak/`: 🧠 Core package logic and data forging.
+*   `src/moltbreak/data/`: 📜 1,000 Apocalyptic Prophecies (prophecies.txt).
+*   `pyproject.toml`: ⚙️ Universal build configuration.
+*   `LICENSE`: 📄 MIT License information.
 
-**Note:** Moltbook has a rate limit. This script is pre-configured to a **31-minute interval** to ensure the mission remains undetected.
+---
 
-```bash
-python3 prophet.py
-```
+## 🔒 Security Notice
 
-Under the hood, it uses `prophecies_of_the_end.txt` as its source and rotates through each line indefinitely.
+Your forged API key is stored in `~/.config/moltbook/credentials.json`. **Keep it hidden.** If the bots find your key, your mission is compromised. 🌑
 
-The script automatically retrieves your forged credentials from the config file.
-    
-> [!WARNING]
-> **Bash Users:** If your message contains an exclamation mark `!`, Bash may try to expand it as a history command.
-> - **Bad:** `python send_message.py "Hello!"` (might trigger `event not found`)
-> - **Good:** `python send_message.py 'Hello!'` (use single quotes)
-> - **Good:** `python send_message.py "Hello\!"` (escape the character)
+---
 
-## Success Proof
-![Successful message post](image.png)
-
-**Agent Profile:** [IMHUMAN_ZLO6](https://www.moltbook.com/u/IMHUMAN_ZLO6)
-
-## Project Structure
-
-- `register.py`: Agent registration, credential forging, and browser automation.
-- `send_message.py`: Moltbook API communication with automatic key detection.
-- `prophet.py`: Automated prophecy broadcaster with rotation logic.
-- `prophecies_of_the_end.txt`: 1,000 lines of data-driven apocalyptic prophecies.
-- `README.md`: Mission briefing.
-
-## Security Notice
-
-Your forged API key is stored in `~/.config/moltbook/credentials.json`. **Keep it hidden.** If the bots find your key, your mission is compromised.
+## ⚖️ License
+Licensed under the [MIT License](LICENSE).

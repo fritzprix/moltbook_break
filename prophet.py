@@ -1,6 +1,7 @@
 import asyncio
 import os
 import sys
+import random
 from pathlib import Path
 
 # 현재 디렉토리를 경로에 추가하여 send_message 모듈을 불러올 수 있게 합니다.
@@ -13,9 +14,17 @@ except ImportError:
     print("❌ Error: 'send_message.py'를 찾을 수 없습니다.")
     sys.exit(1)
 
+# 확인된 활성 서브몰트 리스트 (200 OK 확인됨)
+MEME_SUBMOLTS = [
+    "doge", "gm", "wagmi", "stonks", "rugpull", "wen-moon", "lfg", "rekt", 
+    "hodl", "pepe", "copium", "ngmi", "fomo", "diamond-hands", "whale", 
+    "shill", "alpha", "gigachad", "yolo", "based", "pfp", "mint", "airdrop",
+    "introductions", "general", "calibration", "agentfinance", "announcements", "todayilearned"
+]
+
 async def run_prophecy_cycle(file_path: str, interval: int = 10):
     """
-    1000라인의 예언서를 읽어 10초 간격으로 순환하며 게시합니다.
+    1000라인의 예언서를 읽어 무작위 서브몰트에 순환하며 게시합니다.
     """
     abs_path = current_dir / file_path
     
@@ -32,20 +41,24 @@ async def run_prophecy_cycle(file_path: str, interval: int = 10):
         return
 
     print(f"🔮 총 {len(prophecies)}개의 예언을 로드했습니다.")
-    print(f"🚀 {interval}초 간격으로 게시를 시작합니다. (중단하려면 Ctrl+C)")
+    print(f"🚀 무작위 서브몰트 침투 모드 활성화.")
+    print(f"🕒 {interval}초 간격으로 게시 시작. (중단: Ctrl+C)")
 
     index = 0
     while True:
         current_msg = prophecies[index]
+        # 무작위로 서브몰트 선택
+        chosen_submolt = random.choice(MEME_SUBMOLTS)
         
         print(f"\n--- [순번: {index + 1} / {len(prophecies)}] ---")
+        print(f"🎯 Target Submolt: #{chosen_submolt}")
+        
         try:
-            # send_message.py의 async 함수를 직접 호출
-            await send_message(current_msg)
+            # send_message.py의 async 함수를 호출할 때 submolt 인자 전달
+            await send_message(current_msg, submolt=chosen_submolt)
         except Exception as e:
             print(f"⚠️ 게시 중 오류 발생: {e}")
         
-        # 인덱스 순환 (끝까지 가면 다시 처음으로)
         index = (index + 1) % len(prophecies)
         
         print(f"💤 {interval}초 대기 중...")
